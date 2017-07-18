@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>formulaire</title>
+    <link rel="stylesheet" href="print.css">
+
+  </head>
+  <body>
+
+    <form action="/result" method="POST">
+
+    	<div class="container" style="margin:auto; width: 200mm; height: 280mm;">
+    		<div class="form-inline">
+    			<label  for="uniqueID" style="width:100px; margin:20px">uniqueID</label>
+    			<input class="form-control" type="number" value="{{ invoice.uniqueID }}" id="uniqueID" name="uniqueID">
+    		</div>
+
+    		<div class="form-inline">
+    			<label for="date" style="width:100px; margin:20px">date</label>
+    			<input class="form-control" type="date" value="{{ invoice.date }}" id="date" name="date">
+
+    			<label for="dueDate" style="width:100px; margin:20px">dueDate</label>
+    			<input class="form-control" type="date" value="{{ invoice.dueDate }}" id="dueDate" name="dueDate">
+    		</div>
+
+    		<div class="form-inline">
+    			<label for="quantity" style="width:100px; margin:20px">quantity</label>
+    			<input class="form-control" type="number"  value="{{ invoice.quantity }}" id="quantity" name="quantity">
+
+    			<label for="rate" style="width:100px; margin:20px">rate</label>
+    			<input class="form-control" type="number" step="0.01" value="{{ invoice.rate }}" id="rate" name="rate">
+    		</div>
+    		<div class="form-inline">
+    			<label for="vat" style="width:100px; margin:20px">vat</label>
+    			<input class="form-control" type="number" step="0.01" value="{{ invoice.vat }}" id="vat" name="vat">
+    		</div>
+
+    		<div class="form-inline">
+
+    		</div>
+    		<br/>
+    		<div class="form-group row">
+    			<label for="description" style="width:120px">description</label>
+    			<textarea class="form-control" rows="20" value="{{ invoice.description }}" id="description" name="description"></textarea>
+    		</div>
+
+        	<button type="submit"  id="print-pdf" class="btn btn-primary">Submit</button>
+    	</div>
+
+    </form>
+
+
+  </body>
+
+  <script>
+    // You can also require other files to run in this process
+    require('./renderer.js')
+  </script>
+</html>
