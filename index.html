@@ -45,16 +45,45 @@
     			<textarea class="form-control" rows="20" value="{{ invoice.description }}" id="description" name="description"></textarea>
     		</div>
 
-        	<button type="submit"  id="print-pdf" class="btn btn-primary">Submit</button>
+        	<button id="model-pdf">Submit</button>
     	</div>
 
     </form>
 
 
   </body>
+  <script>window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.min.js');</script>
+
+  <script>
+
+      $(function() {
+          body = $(document.body);
+
+          $('#model-pdf').on('click', function (event) {
+              event.preventDefault();
+
+
+              data = {
+                  uniqueID : $('#uniqueID').val(),
+				  date : $('#date').val(),
+				  dueDate : $('#dueDate').val(),
+				  quantity : $('#quantity').val(),
+				  rate : $('#rate').val(),
+				  vat : $('#vat').val()
+			  };
+
+              body.load('./result.html', data);
+          })
+      });
+
+
+
+  </script>
+
 
   <script>
     // You can also require other files to run in this process
     require('./renderer.js')
+    require('./result.html')
   </script>
 </html>

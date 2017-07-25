@@ -78,6 +78,11 @@ app.on('activate', function () {
 
 
 //MORE OF MY shit
+//
+// ipcMain.on('submitForm', function(event, data) {
+//     // Access form data here
+// });
+
 
 ipc.on('print-to-pdf', function (event) {
   const pdfPath = path.join(os.tmpdir(), 'print.pdf')

@@ -6,6 +6,17 @@ const ipc = require('electron').ipcRenderer
 
 const printPDFBtn = document.getElementById('print-pdf')
 
+// modelPDFBtn.addEventListener('click', function (event) {
+//
+//     const uniqueID = document.getElementById('uniqueID')
+//
+//     let formData = uniqueID
+//
+//     ipcRenderer.send('submitForm', formData);
+// })
+
+
+
 printPDFBtn.addEventListener('click', function (event) {
   ipc.send('print-to-pdf')
 })
