@@ -50,6 +50,7 @@
 
     </form>
 
+	<button id="test">test</button>
 
   </body>
   <script>window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.min.js');</script>
@@ -69,7 +70,8 @@
 				  dueDate : $('#dueDate').val(),
 				  quantity : $('#quantity').val(),
 				  rate : $('#rate').val(),
-				  vat : $('#vat').val()
+				  vat : $('#vat').val(),
+				  description : $('#description').val()
 			  };
 
               body.load('./result.html', data);

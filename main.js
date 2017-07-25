@@ -17,6 +17,20 @@ const os = require('os')
 const ipc = electron.ipcMain
 const shell = electron.shell
 
+const storage = require('electron-json-storage')
+
+app.getPath('userData')
+
+ipc.on('test', function (event) {
+    // Write
+
+    storage.set('foobar', { foo: 'bar' })
+
+    // Read
+
+    console.log(storage.get('foobar'))
+    // will print "bar"
+})
 
 
 // end of my shit
