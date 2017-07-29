@@ -23,6 +23,7 @@ app.getPath('userData')
 
 ipc.on('test', function (event) {
     // Write
+    console.log("caca")
 
     storage.set('foobar', { foo: 'bar' })
 

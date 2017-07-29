@@ -6,6 +6,8 @@ const ipc = require('electron').ipcRenderer
 
 const printPDFBtn = document.getElementById('print-pdf')
 const test = document.getElementById('test')
+const db = document.getElementById('db')
+
 
 
 // modelPDFBtn.addEventListener('click', function (event) {
@@ -20,7 +22,12 @@ const test = document.getElementById('test')
 
 
 printPDFBtn.addEventListener('click', function (event) {
+  this.style.visibility = 'hidden'
   ipc.send('print-to-pdf')
+})
+
+test.addEventListener('click', function (event) {
+    ipc.send('test')
 })
 
 ipc.on('wrote-pdf', function (event, path) {
