@@ -1,0 +1,40 @@
+<div id="uniqueID"></div>
+<div id="date"></div>
+<div id="dueDate"></div>
+<div id="quantity"></div>
+<div id="rate"></div>
+<div id="vat"></div>
+<div id="description"></div>
+
+
+
+<button id="print-pdf">Print to pdf</button>
+
+
+
+<script>
+	$(function () {
+        body = $(document.body);
+
+        $('#uniqueID').html(data.uniqueID);
+        $('#date').html(data.date);
+        $('#dueDate').html(data.dueDate);
+        $('#quantity').html(data.quantity);
+        $('#rate').html(data.rate);
+        $('#vat').html(data.vat);
+        $('#description').html(data.description);
+
+
+
+
+
+
+    })
+
+</script>
+
+
+<script>
+    // You can also require other files to run in this process
+    require('./renderer.js')
+</script>
