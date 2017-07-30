@@ -3,27 +3,29 @@
 // All of the Node.js APIs are available in this process.
 
 const ipc = require('electron').ipcRenderer
+const Datastore = require('nedb')
+const db = new Datastore({ filename: 'data/savefile', autoload: true });
 
 const printPDFBtn = document.getElementById('print-pdf')
 const test = document.getElementById('test')
-const db = document.getElementById('db')
+const dbBTN = document.getElementById('db')
 
 
-
-// modelPDFBtn.addEventListener('click', function (event) {
-//
-//     const uniqueID = document.getElementById('uniqueID')
-//
-//     let formData = uniqueID
-//
-//     ipcRenderer.send('submitForm', formData);
-// })
+dbBTN.addEventListener('click', function (event) {
+    db.find({}, function (err, docs) {
+        console.log(docs)
+    })
+})
 
 
 
 printPDFBtn.addEventListener('click', function (event) {
   this.style.visibility = 'hidden'
-  ipc.send('print-to-pdf')
+
+    db.insert(data, function (err, newDoc) {
+        console.log(newDoc)
+    });
+  // ipc.send('print-to-pdf')
 })
 
 test.addEventListener('click', function (event) {

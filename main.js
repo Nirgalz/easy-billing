@@ -33,6 +33,12 @@ ipc.on('test', function (event) {
     // will print "bar"
 })
 
+ipc.on('db', function (event) {
+    var Datastore = require('nedb')
+    db = new Datastore({ filename: 'path/to/datafile', autoload: true });
+    console.log('db created')
+})
+
 
 // end of my shit
 

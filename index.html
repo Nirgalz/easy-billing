@@ -11,6 +11,7 @@
   <button id="test">test</button>
   <button id="db">db</button>
 
+  <div id="content">
 
   <form action="/result" method="POST">
 
@@ -53,8 +54,7 @@
     	</div>
 
     </form>
-
-	<button id="test">test</button>
+  </div>
 
   </body>
   <script>window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.min.js');</script>
@@ -62,13 +62,13 @@
   <script>
 
       $(function() {
-          body = $(document.body);
+           content = $('#content');
 
           $('#model-pdf').on('click', function (event) {
               event.preventDefault();
 
 
-              data = {
+               data = {
                   uniqueID : $('#uniqueID').val(),
 				  date : $('#date').val(),
 				  dueDate : $('#dueDate').val(),
@@ -78,7 +78,7 @@
 				  description : $('#description').val()
 			  };
 
-              body.load('./result.html', data);
+              content.load('./result.html', data);
           })
       });
 
