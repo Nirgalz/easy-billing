@@ -1,0 +1,67 @@
+<form>
+    <div class="container" style="margin:auto; width: 200mm; height: 280mm;">
+        <div class="form-inline">
+            <label  for="uniqueID" style="width:100px; margin:20px">uniqueID</label>
+            <input class="form-control" type="number" id="uniqueID" name="uniqueID">
+        </div>
+
+        <div class="form-inline">
+            <label for="date" style="width:100px; margin:20px">date</label>
+            <input class="form-control" type="date" id="date" name="date">
+
+            <label for="dueDate" style="width:100px; margin:20px">dueDate</label>
+            <input class="form-control" type="date" id="dueDate" name="dueDate">
+        </div>
+
+        <div class="form-inline">
+            <label for="quantity" style="width:100px; margin:20px">quantity</label>
+            <input class="form-control" type="number" id="quantity" name="quantity">
+
+            <label for="rate" style="width:100px; margin:20px">rate</label>
+            <input class="form-control" type="number" step="0.01" id="rate" name="rate">
+        </div>
+        <div class="form-inline">
+            <label for="vat" style="width:100px; margin:20px">vat</label>
+            <input class="form-control" type="number" step="0.01" id="vat" name="vat">
+        </div>
+
+        <div class="form-inline">
+
+        </div>
+        <br/>
+        <div class="form-group row">
+            <label for="description" style="width:120px">description</label>
+            <textarea class="form-control" rows="20" id="description" name="description"></textarea>
+        </div>
+
+        <button id="model-pdf">Show the model</button>
+    </div>
+
+</form>
+
+<script>
+$(function () {
+    const content = $('#content');
+
+
+    //new bill to model
+    $('#model-pdf').on('click', function (event) {
+        event.preventDefault();
+
+
+        const data = {
+            uniqueID : $('#uniqueID').val(),
+            date : $('#date').val(),
+            dueDate : $('#dueDate').val(),
+            quantity : $('#quantity').val(),
+            rate : $('#rate').val(),
+            vat : $('#vat').val(),
+            description : $('#description').val()
+        };
+
+        content.load('./result.html', data);
+    })
+})
+
+
+</script>

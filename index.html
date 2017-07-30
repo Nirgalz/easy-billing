@@ -4,41 +4,54 @@
     <meta charset="UTF-8">
     <title>formulaire</title>
     <link rel="stylesheet" href="print.css">
+	  <!-- Bootstrap CSS -->
+	  <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+	  <!-- jQuery JS -->
+	  <script>
+          window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.min.js');
+	  </script>
+	  <!-- Bootstrap JS -->
+	  <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
   </head>
   <body>
 
-  <button id="test">test</button>
-  <button id="db">db</button>
+  <button class="btn" id="test">test</button>
+  <button class="btn" id="db">db</button>
+  <br>
+  <button class="btn" id="newBillBtn">NEW</button>
+  <button class="btn" id="lastBillsBtn">LAST BILLS</button>
+  <button class="btn" id="modelsBtn">MANAGE MODELS</button>
+
 
   <div id="content">
 
-  <form action="/result" method="POST">
-
+  <form>
     	<div class="container" style="margin:auto; width: 200mm; height: 280mm;">
     		<div class="form-inline">
     			<label  for="uniqueID" style="width:100px; margin:20px">uniqueID</label>
-    			<input class="form-control" type="number" value="{{ invoice.uniqueID }}" id="uniqueID" name="uniqueID">
+    			<input class="form-control" type="number" id="uniqueID" name="uniqueID">
     		</div>
 
     		<div class="form-inline">
     			<label for="date" style="width:100px; margin:20px">date</label>
-    			<input class="form-control" type="date" value="{{ invoice.date }}" id="date" name="date">
+    			<input class="form-control" type="date" id="date" name="date">
 
     			<label for="dueDate" style="width:100px; margin:20px">dueDate</label>
-    			<input class="form-control" type="date" value="{{ invoice.dueDate }}" id="dueDate" name="dueDate">
+    			<input class="form-control" type="date" id="dueDate" name="dueDate">
     		</div>
 
     		<div class="form-inline">
     			<label for="quantity" style="width:100px; margin:20px">quantity</label>
-    			<input class="form-control" type="number"  value="{{ invoice.quantity }}" id="quantity" name="quantity">
+    			<input class="form-control" type="number" id="quantity" name="quantity">
 
     			<label for="rate" style="width:100px; margin:20px">rate</label>
-    			<input class="form-control" type="number" step="0.01" value="{{ invoice.rate }}" id="rate" name="rate">
+    			<input class="form-control" type="number" step="0.01" id="rate" name="rate">
     		</div>
     		<div class="form-inline">
     			<label for="vat" style="width:100px; margin:20px">vat</label>
-    			<input class="form-control" type="number" step="0.01" value="{{ invoice.vat }}" id="vat" name="vat">
+    			<input class="form-control" type="number" step="0.01" id="vat" name="vat">
     		</div>
 
     		<div class="form-inline">
@@ -47,23 +60,33 @@
     		<br/>
     		<div class="form-group row">
     			<label for="description" style="width:120px">description</label>
-    			<textarea class="form-control" rows="20" value="{{ invoice.description }}" id="description" name="description"></textarea>
+    			<textarea class="form-control" rows="20" id="description" name="description"></textarea>
     		</div>
 
-        	<button id="model-pdf">Submit</button>
+        	<button id="model-pdf">Show the model</button>
     	</div>
 
     </form>
   </div>
 
   </body>
-  <script>window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.min.js');</script>
 
   <script>
 
       $(function() {
-           content = $('#content');
 
+          const content = $('#content');
+
+          //new bill
+		  $('#newBillBtn').on('click', function (event) {
+			  event.preventDefault();
+			  content.load('./result.html');
+
+          });
+
+
+
+           //new bill to model
           $('#model-pdf').on('click', function (event) {
               event.preventDefault();
 
@@ -91,5 +114,7 @@
     // You can also require other files to run in this process
     require('./renderer.js')
     require('./result.html')
+    require('./newbill.html')
+
   </script>
 </html>
