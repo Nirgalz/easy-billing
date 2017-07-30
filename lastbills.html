@@ -1,0 +1,45 @@
+<table class="table">
+    <thead>
+    <tr>
+        <th>date</th>
+        <th>model</th>
+        <th>price</th>
+    </tr>
+    </thead>
+    <tbody id="bills">
+    <tr>
+        <td>John</td>
+        <td>Doe</td>
+        <td>john@example.com</td>
+    </tr>
+    <tr>
+        <td>Mary</td>
+        <td>Moe</td>
+        <td>mary@example.com</td>
+    </tr>
+    <tr>
+        <td>July</td>
+        <td>Dooley</td>
+        <td>july@example.com</td>
+    </tr>
+    </tbody>
+</table>
+
+
+<script>
+    $(function () {
+        const Datastore = require('nedb')
+
+        const db = new Datastore({ filename: 'data/savefile', autoload: true });
+        db.find({}, function (err, docs) {
+            Object.keys(docs).forEach(function(key) {
+                $('#bills').append('<tr><td>' + docs[key]["date"] + '</td><td>' + docs[key]["price"] + '</td></tr>')
+            });
+
+
+
+            console.log(docs);
+
+        })
+    })
+</script>

@@ -8,15 +8,6 @@ const db = new Datastore({ filename: 'data/savefile', autoload: true });
 
 const printPDFBtn = document.getElementById('print-pdf')
 const test = document.getElementById('test')
-const dbBTN = document.getElementById('db')
-
-
-dbBTN.addEventListener('click', function (event) {
-    db.find({}, function (err, docs) {
-        console.log(docs)
-    })
-})
-
 
 
 printPDFBtn.addEventListener('click', function (event) {

@@ -78,11 +78,15 @@
           const content = $('#content');
 
           //new bill
-		  $('#newBillBtn').on('click', function (event) {
-			  event.preventDefault();
-			  content.load('./result.html');
+		  $('#newBillBtn').on('click', function () {
+			  content.load('./newbill.html');
 
           });
+
+		  //last bills
+		  $('#lastBillsBtn').on('click', function () {
+			  content.load('lastbills.html');
+          })
 
 
 
@@ -91,7 +95,7 @@
               event.preventDefault();
 
 
-               data = {
+                data = {
                   uniqueID : $('#uniqueID').val(),
 				  date : $('#date').val(),
 				  dueDate : $('#dueDate').val(),
