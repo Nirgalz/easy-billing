@@ -19,9 +19,9 @@ printPDFBtn.addEventListener('click', function (event) {
   // ipc.send('print-to-pdf')
 })
 
-test.addEventListener('click', function (event) {
-    ipc.send('test')
-})
+// test.addEventListener('click', function (event) {
+//     ipc.send('test')
+// })
 
 ipc.on('wrote-pdf', function (event, path) {
   const message = `Wrote PDF to: ${path}`
