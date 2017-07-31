@@ -1,3 +1,6 @@
+<button class="btn" id="print-pdf">Print to pdf</button>
+
+
 <div id="uniqueID"></div>
 <div id="date"></div>
 <div id="dueDate"></div>
@@ -8,12 +11,13 @@
 
 
 
-<button id="print-pdf">Print to pdf</button>
+<button id="test">test</button>
+
 
 
 
 <script>
-	$(function () {
+
 
         $('#uniqueID').html(data.uniqueID);
         $('#date').html(data.date);
@@ -23,9 +27,23 @@
         $('#vat').html(data.vat);
         $('#description').html(data.description);
 
-        console.log(data.edited);
+        $('#print-pdf').on('click', function () {
+            this.style.visibility = 'hidden'
+            const Datastore = require('nedb')
 
-    })
+            const db = new Datastore({ filename: 'data/savefile', autoload: true });
+
+            if (data.edited === 0) {
+                db.insert(data, function (err, newDoc) {
+                    console.log(newDoc)
+                });
+            } else if (data.edited === 1) {
+                db.update({ _id: data._id }, data, {}, function (err, numReplaced) {
+                    console.log(numReplaced + ' rows updated')
+                    console.log(err);
+                });
+            }
+        })
 
 </script>
 
