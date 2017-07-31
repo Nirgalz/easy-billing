@@ -10,14 +10,23 @@ const printPDFBtn = document.getElementById('print-pdf')
 const test = document.getElementById('test')
 
 
-printPDFBtn.addEventListener('click', function (event) {
-  this.style.visibility = 'hidden'
+    printPDFBtn.addEventListener('click', function (event) {
+        this.style.visibility = 'hidden'
 
-    db.insert(data, function (err, newDoc) {
-        console.log(newDoc)
-    });
-  // ipc.send('print-to-pdf')
-})
+
+        if (data.edited === 0) {
+            db.insert(data, function (err, newDoc) {
+                console.log(newDoc)
+            });
+        } else if (data.edited === 1) {
+            db.update({ _id: data._id }, data, {}, function (err, numReplaced) {
+                console.log(numReplaced + ' rows updated')
+            });
+        }
+        // ipc.send('print-to-pdf')
+    })
+
+
 
 // test.addEventListener('click', function (event) {
 //     ipc.send('test')

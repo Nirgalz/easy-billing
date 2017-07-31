@@ -1,7 +1,7 @@
 <form>
     <div class="container" style="margin:auto; width: 200mm; height: 280mm;">
         <div class="form-inline">
-            <label  for="uniqueID" style="width:100px; margin:20px">uniqueID</label>
+            <label for="uniqueID" style="width:100px; margin:20px">uniqueID</label>
             <input class="form-control" type="number" id="uniqueID" name="uniqueID">
         </div>
 
@@ -40,16 +40,48 @@
 </form>
 
 <script>
-$(function () {
-    const content = $('#content');
+    $(function () {
+        const content = $('#content');
+        edited = 0;
+        if (data !== null) {
+            $('#uniqueID').val(data.uniqueID);
+            $('#date').val(data.date);
+            $('#dueDate').val(data.dueDate);
+            $('#quantity').val(data.quantity);
+            $('#rate').val(data.rate);
+            $('#vat').val(data.vat);
+            $('#description').val(data.description);
+             edited = 1;
+        }
 
+
+        //new bill to model
+        $('#model-pdf').on('click', function (event) {
+            event.preventDefault();
+
+
+            data = {
+                uniqueID: $('#uniqueID').val(),
+                date: $('#date').val(),
+                dueDate: $('#dueDate').val(),
+                quantity: $('#quantity').val(),
+                rate: $('#rate').val(),
+                vat: $('#vat').val(),
+                description: $('#description').val(),
+                edited : edited
+            };
+            content.load('./result.html', data);
+        })
+    });
 
     //new bill to model
     $('#model-pdf').on('click', function (event) {
         event.preventDefault();
+        const content = $('#content');
 
 
-        const data = {
+
+        data = {
             uniqueID : $('#uniqueID').val(),
             date : $('#date').val(),
             dueDate : $('#dueDate').val(),
@@ -61,7 +93,6 @@ $(function () {
 
         content.load('./result.html', data);
     })
-})
 
 
 </script>

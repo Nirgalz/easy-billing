@@ -1,7 +1,7 @@
 <table class="table">
     <thead>
     <tr>
-        <th>date</th>
+        <th>uniqueID</th>
         <th>model</th>
         <th>price</th>
         <th>actions</th>
@@ -23,7 +23,7 @@
         const db = new Datastore({ filename: 'data/savefile', autoload: true });
         db.find({}, function (err, docs) {
             Object.keys(docs).forEach(function(key) {
-                $('#bills').append(`<tr><td>${docs[key]["date"]}</td><td>${docs[key]["price"]}</td><td><button class="printBtn" id="bill-${docs[key]["_id"]}">Print</button></td></tr>`)
+                $('#bills').append(`<tr><td>${docs[key]["uniqueID"]}</td><td>${docs[key]["price"]}</td><td><button class="printBtn" id="bill-${docs[key]["_id"]}">Print</button><button class="editBtn" id="bill-${docs[key]["_id"]}">Edit</button><button class="delBtn" id="bill-${docs[key]["_id"]}">Delete</button></td></tr>`)
 
             });
             addSelectors();
@@ -32,13 +32,12 @@
 
 
         function addSelectors() {
+
+            //print
             $(".printBtn").on('click', function () {
                 const printID = $(this).attr('id').split('-');
 
                 db.find({ _id: printID[1] }, function (err, docs) {
-
-                    console.log();
-
 
                     data = {
                         uniqueID : docs[0]['uniqueID'],
@@ -49,13 +48,36 @@
                         vat : docs[0]['vat'],
                         description : docs[0]['description']
                     };
-
                     content.load('./result.html', data);
                 });
+            });
 
+            //edit bill
+            $(".editBtn").on('click', function () {
+                const printID = $(this).attr('id').split('-');
+
+                db.find({ _id: printID[1] }, function (err, docs) {
+
+                    data = {
+                        uniqueID : docs[0]['uniqueID'],
+                        date : docs[0]['date'],
+                        dueDate : docs[0]['dueDate'],
+                        quantity : docs[0]['quantity'],
+                        rate : docs[0]['rate'],
+                        vat : docs[0]['vat'],
+                        description : docs[0]['description']
+                    };
+                    content.load('./newbill.html', data);
+                });
+            });
+
+            //delete bill
+            $(".delBtn").on('click', function () {
+                const printID = $(this).attr('id').split('-');
+                db.remove({ _id: printID[1] }, {}, function (err, numRemoved) {
+                    content.load('lastbills.html');
+                });
             })
         }
-
-
     })
 </script>

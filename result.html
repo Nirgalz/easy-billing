@@ -14,7 +14,6 @@
 
 <script>
 	$(function () {
-        body = $(document.body);
 
         $('#uniqueID').html(data.uniqueID);
         $('#date').html(data.date);
@@ -23,6 +22,8 @@
         $('#rate').html(data.rate);
         $('#vat').html(data.vat);
         $('#description').html(data.description);
+
+        console.log(data.edited);
 
     })
 
