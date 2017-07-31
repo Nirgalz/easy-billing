@@ -1,4 +1,3 @@
-<button class="btn" id="print-pdf">Print to pdf</button>
 
 
 <div id="uniqueID"></div>
@@ -9,9 +8,9 @@
 <div id="vat"></div>
 <div id="description"></div>
 
+<button class="btn" id="print-pdf">Print to pdf</button>
 
 
-<button id="test">test</button>
 
 
 
@@ -38,9 +37,10 @@
                     console.log(newDoc)
                 });
             } else if (data.edited === 1) {
-                db.update({ _id: data._id }, data, {}, function (err, numReplaced) {
+                console.log(data);
+
+                db.update({ _id: data._id }, data , {}, function (err, numReplaced) {
                     console.log(numReplaced + ' rows updated')
-                    console.log(err);
                 });
             }
         })

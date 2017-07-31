@@ -52,6 +52,8 @@
             $('#vat').val(data.vat);
             $('#description').val(data.description);
              edited = 1;
+             _id = data._id;
+             console.log(data._id);
         }
 
 
@@ -68,7 +70,8 @@
                 rate: $('#rate').val(),
                 vat: $('#vat').val(),
                 description: $('#description').val(),
-                edited : edited
+                edited : edited,
+                _id : _id
             };
             content.load('./result.html', data);
         })

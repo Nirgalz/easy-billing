@@ -9,9 +9,7 @@ const db = new Datastore({ filename: 'data/savefile', autoload: true });
 const printPDFBtn = document.getElementById('print-pdf')
 const test = document.getElementById('test')
 
-test.addEventListener('click', function () {
-    console.log('test')
-})
+
 //
 // printPDFBtn.addEventListener('click', function () {
 //     this.style.visibility = 'hidden'

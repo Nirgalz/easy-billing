@@ -65,7 +65,8 @@
                         quantity : docs[0]['quantity'],
                         rate : docs[0]['rate'],
                         vat : docs[0]['vat'],
-                        description : docs[0]['description']
+                        description : docs[0]['description'],
+                        _id : docs[0]._id
                     };
                     content.load('./newbill.html', data);
                 });
