@@ -4,42 +4,48 @@
         <th>date</th>
         <th>model</th>
         <th>price</th>
+        <th>actions</th>
     </tr>
     </thead>
     <tbody id="bills">
-    <tr>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-    </tr>
-    <tr>
-        <td>Mary</td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
-    </tr>
-    <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
-    </tr>
-    </tbody>
+
 </table>
 
 
 <script>
     $(function () {
+
+//        function printPDF(id) {
+//            db.find({ _id: id }, function (err, docs) {
+//                console.log(docs)
+//            });
+//        }
         const Datastore = require('nedb')
 
         const db = new Datastore({ filename: 'data/savefile', autoload: true });
         db.find({}, function (err, docs) {
             Object.keys(docs).forEach(function(key) {
-                $('#bills').append('<tr><td>' + docs[key]["date"] + '</td><td>' + docs[key]["price"] + '</td></tr>')
+//                $('#bills').append('<tr><td>' + docs[key]["date"] + '</td><td>' + docs[key]["price"] + '</td><td><button id="bill-">' +  + '</button></td></tr>')
+                $('#bills').append(`<tr><td>${docs[key]["date"]}</td><td>${docs[key]["price"]}</td><td><button class="printBtn" id="bill-${docs[key]["_id"]}">Print</button></td></tr>`)
+
             });
 
+        });
+
+        function test(e) {
+            console.log(e);
+        }
 
 
-            console.log(docs);
+        $(".printBtn").on('click', function () {
+            console.log('ble');
+            const printID = $(this).attr('id').split('-');
+
+            db.find({ _id: printID[1] }, function (err, docs) {
+                console.log(docs)
+            });
 
         })
+
     })
 </script>
