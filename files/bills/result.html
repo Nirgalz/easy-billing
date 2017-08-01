@@ -14,7 +14,7 @@
                 <img src="static/img/sly.png" type="image/png" style="width:96mm; height:22mm;" >
                 <h4><strong><span id="name"></span></strong></h4>
                 <p style="font-size:12px;"><a href="mailto:#"><span id="mail"></span></a> <br />
-                    <a href="http://www.helarts.com/helbook_html/"><span id="website"></span></a>
+                    <a href=""><span id="website"></span></a>
                 </p>
                 <p style="font-size:10px;">
                     <strong><span id="street"></span><br /><span id="city"></span><br/></strong><br />
@@ -195,42 +195,7 @@
 
 
 
-<!--<br>user data<br>-->
-<!--<div id="name"></div>-->
-<!--<span id="mail"></span>-->
-<!--<span id="website"></span>-->
-<!--<span id="street"></span>-->
-<!--<span id="city"></span>-->
-<!--<span id="tel"></span>-->
-<!--<span id="siren"></span>-->
-<!--<span id="siret"></span>-->
-<!--<span id="accountOwner"></span>-->
-<!--<span id="accountNo"></span>-->
-<!--<span id="sortCode"></span>-->
-
-
-
-
-<!--<br>bill data<br>-->
-<!--<span id="date"></span>-->
-<!--<span id="dueDate"></span>-->
-<!--<span id="quantity"></span>-->
-<!--<span id="rate"></span>-->
-<!--<span id="vat"></span>-->
-<!--<span id="description"></span>-->
-
-
-<!--<br>client data<br>-->
-<!--<span id="clientName"></span>-->
-<!--<span id="officialName"></span>-->
-<!--<span id="represented"></span>-->
-<!--<span id="clientStreet"></span>-->
-<!--<span id="clientCity"></span>-->
-
-
 <button class="btn" id="print-pdf">Print to pdf</button>
-
-
 
 
 
@@ -244,6 +209,7 @@
         }
     };
 
+    // will get data from the three databases from the id of the bill
     const dbGetBill = function (id) {
         const Datastore = require('nedb');
         const dbUser = new Datastore({ filename: './data/userdata', autoload: true });
@@ -262,67 +228,24 @@
 
     };
 
-
-    if (typeof printID[1] !== 'undefined') {
-        dbGetBill(printID[1]);
-
+    //if it's a printing of an old bill
+    if (typeof printID !== 'undefined') {
+        dbGetBill(printID);
+    } else {
+        printID = null;
     }
-
-    const Datastore = require('nedb')
-
-
-
-    const dbUser = new Datastore({ filename: './data/userdata', autoload: true });
-    dbUser.find({}, function (err, docs) {
-        for (var key in docs[0]) {
-            if (docs[0].hasOwnProperty(key)) {
-                $("#" + key +"").html(docs[0][key]);
-            }
-        }
-
-    });
-
-    const dbClient = new Datastore({ filename: './data/clients', autoload: true });
-    dbClient.find({_id : data.clientID}, function (err, docs) {
-        for (var key in docs[0]) {
-            if (docs[0].hasOwnProperty(key)) {
-                $("#" + key +"").html(docs[0][key]);
-            }
-        }
-
-    });
-
-
-
-        $('#uniqueID').html(data.uniqueID);
-        $('#date').html(data.date);
-        $('#dueDate').html(data.dueDate);
-        $('#quantity').html(data.quantity);
-        $('#rate').html(data.rate);
-        $('#vat').html(data.vat);
-        $('#description').html(data.description);
 
         $('#print-pdf').on('click', function () {
             this.style.visibility = 'hidden'
 
-            const db = new Datastore({ filename: './data/savefile', autoload: true });
-
-            if (data.print === 1) {
                 ipc = require('electron').ipcRenderer;
 
                 ipc.send('print-to-pdf')
 
-            } else if (data.edited === 1) {
-                console.log(data);
-
-                db.update({ _id: data._id }, data , {}, function (err, numReplaced) {
-                    console.log(numReplaced + ' rows updated')
-                });
-            } else {
-              db.insert(data, function (err, newDoc) {
-                  console.log(newDoc)
-              });
-          }
         })
+
+
+
+
 
 </script>

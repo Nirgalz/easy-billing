@@ -36,8 +36,9 @@
 
             //print
             $(".printBtn").on('click', function () {
-                printID = $(this).attr('id').split('-');
-                    content.load('./files/bills/result.html', printID[1]);
+                p = $(this).attr('id').split('-');
+                printID = p[1];
+                    content.load('./files/bills/result.html', printID);
             });
 
             //edit bill
