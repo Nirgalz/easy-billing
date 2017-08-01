@@ -1,28 +1,49 @@
+<div id="name"></div>
+<span id="mail"></span>
+<span id="website"></span>
+<span id="street"></span>
+<span id="city"></span>
+<span id="tel"></span>
+<span id="siren"></span>
+<span id="siret"></span>
+<span id="accountOwner"></span>
+<span id="accountNo"></span>
+<span id="sortCode"></span>
 
 
-<div id="date"></div>
-<div id="dueDate"></div>
-<div id="quantity"></div>
-<div id="rate"></div>
-<div id="vat"></div>
-<div id="description"></div>
+
+
+
+<span id="date"></span>
+<span id="dueDate"></span>
+<span id="quantity"></span>
+<span id="rate"></span>
+<span id="vat"></span>
+<span id="description"></span>
+
+
 
 <button class="btn" id="print-pdf">Print to pdf</button>
 
-<div id="test"></div>
 
 
 
 
 <script>
 
+    const Datastore = require('nedb')
 
-    var test = new Vue({
-        el: '#test',
-        data: {
-            message: 'caca'
+    const dbUser = new Datastore({ filename: './data/userdata', autoload: true });
+    dbUser.find({}, function (err, docs) {
+        console.log(docs);
+        for (var key in docs[0]) {
+            if (docs[0].hasOwnProperty(key)) {
+                $("#" + key +"").html(docs[0][key]);
+            }
         }
+
     });
+
 
         $('#uniqueID').html(data.uniqueID);
         $('#date').html(data.date);
@@ -34,7 +55,6 @@
 
         $('#print-pdf').on('click', function () {
             this.style.visibility = 'hidden'
-            const Datastore = require('nedb')
 
             const db = new Datastore({ filename: './data/savefile', autoload: true });
 
