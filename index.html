@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>formulaire</title>
-    <link rel="stylesheet" href="print.css">
+    <link rel="stylesheet" href="files/print.css">
 	  <!-- Bootstrap CSS -->
 	  <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -38,12 +38,12 @@
           //new bill
 		  $('#newBillBtn').on('click', function () {
 		      data = null;
-			  content.load('./newbill.html', data);
+			  content.load('./files/newbill.html', data);
           });
 
 		  //last bills
 		  $('#lastBillsBtn').on('click', function () {
-			  content.load('lastbills.html');
+			  content.load('files/lastbills.html');
           })
       });
 
@@ -53,7 +53,9 @@
   <script>
     // You can also require other files to run in this process
     require('./renderer.js')
-    require('./result.html')
-    require('./newbill.html')
+//    require('./files/result.html')
+//    require('./files/newbill.html')
+//    require('./files/lastbills.html')
+
   </script>
 </html>

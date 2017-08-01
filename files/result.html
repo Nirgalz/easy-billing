@@ -17,6 +17,8 @@
 
 <script>
 
+    const ipc = require('electron').ipcRenderer;
+
 
         $('#uniqueID').html(data.uniqueID);
         $('#date').html(data.date);
@@ -30,25 +32,22 @@
             this.style.visibility = 'hidden'
             const Datastore = require('nedb')
 
-            const db = new Datastore({ filename: 'data/savefile', autoload: true });
+            const db = new Datastore({ filename: './data/savefile', autoload: true });
 
-            if (data.edited === 0) {
-                db.insert(data, function (err, newDoc) {
-                    console.log(newDoc)
-                });
+            if (data.print === 1) {
+                ipc.send('print-to-pdf')
+
             } else if (data.edited === 1) {
                 console.log(data);
 
                 db.update({ _id: data._id }, data , {}, function (err, numReplaced) {
                     console.log(numReplaced + ' rows updated')
                 });
-            }
+            } else {
+              db.insert(data, function (err, newDoc) {
+                  console.log(newDoc)
+              });
+          }
         })
 
-</script>
-
-
-<script>
-    // You can also require other files to run in this process
-    require('./renderer.js')
 </script>

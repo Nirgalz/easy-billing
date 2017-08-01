@@ -20,11 +20,13 @@
         const content = $('#content');
 
 
-        const db = new Datastore({ filename: 'data/savefile', autoload: true });
-        db.find({}, function (err, docs) {
-            Object.keys(docs).forEach(function(key) {
-                $('#bills').append(`<tr><td>${docs[key]["uniqueID"]}</td><td>${docs[key]["price"]}</td><td><button class="printBtn" id="bill-${docs[key]["_id"]}">Print</button><button class="editBtn" id="bill-${docs[key]["_id"]}">Edit</button><button class="delBtn" id="bill-${docs[key]["_id"]}">Delete</button></td></tr>`)
+        const db = new Datastore({ filename: './data/savefile', autoload: true });
 
+        db.find({}, function (err, docs) {
+            console.log(docs);
+
+            Object.keys(docs).forEach(function(key) {
+                $('#bills').append(`<tr><td>${docs[key]["uniqueID"]}</td><td>${docs[key]["price"]}</td><td><button title="print" class="btn printBtn glyphicon glyphicon-print" id="bill-${docs[key]["_id"]}"></button><button title="edit" class="btn editBtn glyphicon glyphicon-edit" id="bill-${docs[key]["_id"]}"></button><button title="Delete" class="btn delBtn glyphicon glyphicon-remove-circle" id="bill-${docs[key]["_id"]}"></button></td></tr>`)
             });
             addSelectors();
 
@@ -46,9 +48,10 @@
                         quantity : docs[0]['quantity'],
                         rate : docs[0]['rate'],
                         vat : docs[0]['vat'],
-                        description : docs[0]['description']
+                        description : docs[0]['description'],
+                        print : 1
                     };
-                    content.load('./result.html', data);
+                    content.load('./files/result.html', data);
                 });
             });
 
@@ -68,7 +71,7 @@
                         description : docs[0]['description'],
                         _id : docs[0]._id
                     };
-                    content.load('./newbill.html', data);
+                    content.load('./files/newbill.html', data);
                 });
             });
 
@@ -76,7 +79,7 @@
             $(".delBtn").on('click', function () {
                 const printID = $(this).attr('id').split('-');
                 db.remove({ _id: printID[1] }, {}, function (err, numRemoved) {
-                    content.load('lastbills.html');
+                    content.load('./files/lastbills.html');
                 });
             })
         }
