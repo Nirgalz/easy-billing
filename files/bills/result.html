@@ -1,35 +1,231 @@
 
-<br>user data<br>
-<div id="name"></div>
-<span id="mail"></span>
-<span id="website"></span>
-<span id="street"></span>
-<span id="city"></span>
-<span id="tel"></span>
-<span id="siren"></span>
-<span id="siret"></span>
-<span id="accountOwner"></span>
-<span id="accountNo"></span>
-<span id="sortCode"></span>
+<link rel="stylesheet"
+      href="print.css">
+
+
+<div id="mainContainer" class="container" style="margin:auto; width: 200mm; height: 280mm;">
+
+    <div class="row">
+        <div class="bg-info" style="float: left; margin:auto; width: 100mm;  border-style: ridge ; border-width: 1px;" >
+            <p style="margin-left:2mm; font-size:10px;">From:</p>
+
+            <div class="bg-info"  style="float: left; margin-left:2mm; width: 96mm;height:72mm;">
+
+                <img src="static/img/sly.png" type="image/png" style="width:96mm; height:22mm;" >
+                <h4><strong><span id="name"></span></strong></h4>
+                <p style="font-size:12px;"><a href="mailto:#"><span id="mail"></span></a> <br />
+                    <a href="http://www.helarts.com/helbook_html/"><span id="website"></span></a>
+                </p>
+                <p style="font-size:10px;">
+                    <strong><span id="street"></span><br /><span id="city"></span><br/></strong><br />
+                    Tel. :<strong><span id="tel"></span></strong><br />
+                    Siren: 	<strong><span id="siren"></span></strong><br />
+                    Siret: 	<strong><span id="siret"></span></strong><br />
+                    VAT : 	<strong><span id="vat"></span></strong>
+                </p>
+            </div>
+        </div>
+        <div class="bg-info" style="float: left; margin:auto; width: 100mm;  border-style: ridge ; border-width: 1px;">
+            <p style="margin-left:2mm; font-size:10px;">To:</p>
+
+            <div class="bg-info" style="float: left; margin-left:2mm; width: 96mm; height:72mm;">
+
+                <img src="static/img/uwe_logo.png" type="image/png" style="width:96mm; height:22mm;" >
+                <h4><strong><span id="clientName"></span></strong></h4>
+                <h5><strong><span id="officialName"></span></strong></h5>
+                <h5>represented by <strong><span id="represented"></span></strong></h5>
+                <br />
+                <p style="font-size:10px;">with a place of business at:<br />
+                    <strong><span id="clientStreet"></span> <br /><span id="clientCity"></span></strong></p>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+
+        <div>
+            <h4> Fees: contract VFX artist</h4>
+        </div>
+
+
+        <div>
+            <p style="font-size:12px;">Date: 	<strong><span id="date"></span></strong><br />
+                Invoice Number: 	<strong>F{{ invoice.year }}/<span id="uniqueID"></span></strong><br />
+                To: 	<strong><span id="officialName"></span></strong></p>
+        </div>
+
+        <br/>
+
+
+        <div  style="margin:auto; width: 200mm; ">
+
+            <div class="bg-primary" style="border-style: solid ; border-width: 1px; ">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h5  style=" float: left; margin-left: 2mm; margin-right: 2mm; font-size:12px;"><strong>Description</strong></h5>
+                    </div>
+                    <div class="col-sm-2">
+                        <h5 class="text-right" style=" float: left; margin-right: 2mm; font-size:12px;"><strong>Qty (hours)</strong></h5>
+                    </div>
+                    <div class="col-sm-2">
+                        <h5 class="text-right" style=" float: left; margin-right: 2mm; font-size:12px;"><strong>Hourly Rate</strong></h5>
+                    </div>
+                    <div class="col-sm-2">
+                        <h5 class="text-right" style=" float: left; margin-right: 2mm; font-size:12px;"><strong>Price excl. VAT</strong></h5>
+                    </div>
+                </div>
+            </div>
+
+            <div  style="margin:auto; width: 200mm; border-style: solid ; border-width: 1px;">
+                <div class="bg-info" >
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h5 class="bg-info" style=" margin-left: 5mm; margin-right: 5mm"><strong><span id="description"></span></strong></h5>
+                        </div>
+                        <div class="col-sm-2">
+                            <h5 class="bg-info" ><strong><p class="text-right" style="  margin-right: 2mm"><span id="quantity"></span></p></strong></h5>
+                        </div>
+                        <div class="col-sm-2">
+                            <h5 class="bg-info"><strong><p class="text-right" style="  margin-right: 2mm"><span id="rate"></span></p></strong></h5>
+                        </div>
+                        <div class="col-sm-2">
+                            <h5 class="bg-info"><strong><p class="text-right" style="  margin-right: 2mm">{{ invoice.totalInDollars }}</p></strong></h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-info" >
+                    <div class="row">
+
+                        <div class="col" >
+                            <h5 class="bg-info" style=" margin-left: 15mm; margin-right: 5mm; width: 110mm;">
+                                <span id="description"></span>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                </div>
+                <div class="col-sm-4">
+                    <h5 class="text-right" style="  margin-right: 10px">Total Price Excl. VAT :</h5>
+                </div>
+                <div class="col-sm-2">
+                    <h5 class="bg-info"><p class="text-right" style="  margin-right: 10px">{{ invoice.totalInDollars }}</p></h5>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <h5>VAT not due, pursuant to article 259B - CGI</h5>
+                </div>
+                <div class="col-sm-4">
+                    <h5 class="text-right" style="  margin-right: 2mm"><p class="text-right" style="  margin-right: 2mm">VAT at <span id="vat"></span> % :</p></h5>
+                </div>
+                <div class="col-sm-2">
+                    <h5 class="bg-info"><p class="text-right" style="  margin-right: 2mm">$ 0.00 </p></h5>
+                </div>
+            </div>
+
+
+            <div class="bg-primary" style="border-style: solid ; border-width: 1px;">
+                <div class="row"  >
+                    <div class="col-sm-6">
+                    </div>
+                    <div class="col-sm-4">
+                        <h4 class="bg-primary"><p class="text-right" style="  margin-right: 2mm">Total Incl. VAT :</p></h4>
+                    </div>
+                    <div class="col-sm-2">
+                        <h4 class="bg-primary"><p class="text-right" style="  margin-right: 2mm"><strong>{{ invoice.totalInDollars }}</strong></p></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br />
+
+        <div>
+
+            <h5>Due Date: 		<strong><span id="dueDate"></span></strong></h5>
+            <h5>Payment terms: 		Payment within 30 days.<br />Payment method: 	Money transfer to:</h5>
+
+        </div>
+        <br/>
+
+        <div class="bg-info" style="border-style: ridge ; border-width: 1px;">
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <h6>
+                        Account Owner:<br />
+                        Account No:<br />
+                        Sort Code:<br />
+                    </h6>
+                </div>
+
+                <div class="col-sm-3">
+                    <h5>
+                        <strong>
+                            <span id="accountOwner"></span><br />
+                            <span id="accountNo"></span><br />
+                            <span id="sortCode"></span>
+                        </strong><br />
+                    </h5>
+                </div>
+                <div class="col-sm-6">
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h6  ><br/>
+                Thank you for your business.
+            </h6>
+        </div>
+
+    </div>
+
+</div>
 
 
 
 
-<br>bill data<br>
-<span id="date"></span>
-<span id="dueDate"></span>
-<span id="quantity"></span>
-<span id="rate"></span>
-<span id="vat"></span>
-<span id="description"></span>
+
+<!--<br>user data<br>-->
+<!--<div id="name"></div>-->
+<!--<span id="mail"></span>-->
+<!--<span id="website"></span>-->
+<!--<span id="street"></span>-->
+<!--<span id="city"></span>-->
+<!--<span id="tel"></span>-->
+<!--<span id="siren"></span>-->
+<!--<span id="siret"></span>-->
+<!--<span id="accountOwner"></span>-->
+<!--<span id="accountNo"></span>-->
+<!--<span id="sortCode"></span>-->
 
 
-<br>client data<br>
-<span id="clientName"></span>
-<span id="officialName"></span>
-<span id="represented"></span>
-<span id="clientStreet"></span>
-<span id="clientCity"></span>
+
+
+<!--<br>bill data<br>-->
+<!--<span id="date"></span>-->
+<!--<span id="dueDate"></span>-->
+<!--<span id="quantity"></span>-->
+<!--<span id="rate"></span>-->
+<!--<span id="vat"></span>-->
+<!--<span id="description"></span>-->
+
+
+<!--<br>client data<br>-->
+<!--<span id="clientName"></span>-->
+<!--<span id="officialName"></span>-->
+<!--<span id="represented"></span>-->
+<!--<span id="clientStreet"></span>-->
+<!--<span id="clientCity"></span>-->
 
 
 <button class="btn" id="print-pdf">Print to pdf</button>
@@ -54,7 +250,7 @@
 
     });
 
-    const dbClient = new Datastore({ filename: './data/userdata', autoload: true });
+    const dbClient = new Datastore({ filename: './data/clients', autoload: true });
     dbClient.find({_id : data.clientID}, function (err, docs) {
         for (var key in docs[0]) {
             if (docs[0].hasOwnProperty(key)) {
