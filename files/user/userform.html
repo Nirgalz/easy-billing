@@ -1,0 +1,106 @@
+<form id="userForm">
+    <div class="container" style="margin:auto; width: 200mm; height: 280mm;">
+        <div class="form-inline">
+            <label for="name" style="width:100px; margin:20px">Name</label>
+            <input class="form-control" id="name" name="name">
+        </div>
+
+        <div class="form-inline">
+            <label for="mail" style="width:100px; margin:20px">mail</label>
+            <input class="form-control" id="mail" name="mail">
+
+            <label for="website" style="width:100px; margin:20px">website</label>
+            <input class="form-control" id="website" name="website">
+        </div>
+
+        <div class="form-inline">
+            <label for="street" style="width:100px; margin:20px">street</label>
+            <input class="form-control" id="street" name="street">
+
+            <label for="city" style="width:100px; margin:20px">city</label>
+            <input class="form-control"  id="city" name="city">
+        </div>
+        <div class="form-inline">
+            <label for="tel" style="width:100px; margin:20px">tel</label>
+            <input class="form-control" id="tel" name="tel">
+
+            <label for="siren" style="width:100px; margin:20px">siren</label>
+            <input class="form-control"  id="siren" name="siren">
+
+            <label for="siret" style="width:100px; margin:20px">siret</label>
+            <input class="form-control"  id="siret" name="siret">
+
+            <label for="vat" style="width:100px; margin:20px">vat</label>
+            <input class="form-control"  id="vat" name="vat">
+        </div>
+        <h2>Bank details</h2>
+        <div class="form-inline">
+            <label for="accountOwner" style="width:100px; margin:20px">accountOwner</label>
+            <input class="form-control" id="accountOwner" name="accountOwner">
+
+            <label for="accountNo" style="width:100px; margin:20px">accountNo</label>
+            <input class="form-control"  id="accountNo" name="accountNo">
+
+            <label for="sortCode" style="width:100px; margin:20px">sortCode</label>
+            <input class="form-control"  id="sortCode" name="sortCode">
+
+        </div>
+
+        <div class="form-inline">
+
+        </div>
+        <br/>
+
+        <button class="btn" id="saveUser">save</button>
+    </div>
+
+</form>
+
+<script>
+
+    const Datastore = require('nedb')
+
+    const db = new Datastore({ filename: './data/userdata', autoload: true });
+
+    id = 0;
+    db.find({}, function (err, docs) {
+       id = docs[0]['_id'];
+        for (var key in docs[0]) {
+            if (docs[0].hasOwnProperty(key)) {
+                $("#" + key +"").val(docs[0][key]);
+            }
+        }
+
+    });
+
+
+        $('#saveUser').on('click', function (event) {
+            event.preventDefault();
+
+            // get all the inputs into an array.
+            var $inputs = $('#userForm :input');
+
+            var values = {};
+            $inputs.each(function() {
+                values[this.name] = $(this).val();
+            });
+
+            if (id === 0) {
+                db.insert(values, function (err, newDoc) {
+                    console.log(newDoc)
+                });
+
+            } else {
+                db.update({ _id: id }, values, function (err, newDoc) {
+                    console.log(newDoc)
+                });
+            }
+
+
+
+        })
+
+
+
+
+</script>

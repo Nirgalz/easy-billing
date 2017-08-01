@@ -9,7 +9,7 @@
 
 <button class="btn" id="print-pdf">Print to pdf</button>
 
-
+<div id="test"></div>
 
 
 
@@ -17,6 +17,12 @@
 <script>
 
 
+    var test = new Vue({
+        el: '#test',
+        data: {
+            message: 'caca'
+        }
+    });
 
         $('#uniqueID').html(data.uniqueID);
         $('#date').html(data.date);

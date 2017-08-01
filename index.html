@@ -14,12 +14,14 @@
 	  <!-- Bootstrap JS -->
 	  <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
+
   </head>
   <body>
 
   <button class="btn" id="newBillBtn">NEW</button>
   <button class="btn" id="lastBillsBtn">LAST BILLS</button>
   <button class="btn" id="modelsBtn">MANAGE MODELS</button>
+  <button class="btn" id="userBtn">Personal Informations</button>
 
 
 
@@ -50,6 +52,11 @@
           //models
           $('#modelsBtn').on('click', function () {
               content.load('files/models/modelslist.html');
+          })
+
+          //personal data
+          $('#userBtn').on('click', function () {
+              content.load('files/user/userform.html');
           })
       });
 
