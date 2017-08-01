@@ -195,7 +195,7 @@
 
 
 
-<button class="btn" id="print-pdf">Print to pdf</button>
+<button class="btn btn-success" id="print-pdf">Print to pdf</button>
 
 
 
@@ -236,7 +236,7 @@
     }
 
         $('#print-pdf').on('click', function () {
-            this.style.visibility = 'hidden'
+            this.style.visibility = 'hidden';
 
                 ipc = require('electron').ipcRenderer;
 

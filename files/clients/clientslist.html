@@ -26,7 +26,7 @@
             console.log(docs);
 
             Object.keys(docs).forEach(function(key) {
-                $('#clients').append(`<tr><td>${docs[key]["clientName"]}</td><td>${docs[key]["represented"]}</td><td><button title="edit" class="btn editBtn glyphicon glyphicon-edit" id="client-${docs[key]["_id"]}"></button><button title="Delete" class="btn delBtn glyphicon glyphicon-remove-circle" id="client-${docs[key]["_id"]}"></button></td></tr>`)
+                $('#clients').append(`<tr><td>${docs[key]["clientName"]}</td><td>${docs[key]["represented"]}</td><td><button title="edit" class="btn editBtn glyphicon glyphicon-edit btn-warning" id="client-${docs[key]["_id"]}"></button>  <button title="Delete" class="btn delBtn glyphicon glyphicon-remove-circle btn-danger" id="client-${docs[key]["_id"]}"></button></td></tr>`)
             });
             addSelectors();
 

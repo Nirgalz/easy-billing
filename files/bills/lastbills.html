@@ -25,7 +25,7 @@
 
         db.find({}, function (err, docs) {
             Object.keys(docs).forEach(function(key) {
-                $('#bills').append(`<tr><td>${docs[key]["uniqueID"]}</td><td>${docs[key]["price"]}</td><td><button title="print" class="btn printBtn glyphicon glyphicon-print" id="bill-${docs[key]["_id"]}"></button><button title="edit" class="btn editBtn glyphicon glyphicon-edit" id="bill-${docs[key]["_id"]}"></button><button title="Delete" class="btn delBtn glyphicon glyphicon-remove-circle" id="bill-${docs[key]["_id"]}"></button></td></tr>`)
+                $('#bills').append(`<tr><td>${docs[key]["uniqueID"]}</td><td>${docs[key]["price"]}</td><td><button title="print" class="btn printBtn glyphicon glyphicon-print btn-primary" id="bill-${docs[key]["_id"]}"></button>  <button title="edit" class="btn editBtn glyphicon glyphicon-edit btn-warning" id="bill-${docs[key]["_id"]}"></button>  <button title="Delete" class="btn delBtn glyphicon glyphicon-remove-circle btn-danger" id="bill-${docs[key]["_id"]}"></button></td></tr>`)
             });
             addSelectors();
 
