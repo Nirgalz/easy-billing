@@ -51,7 +51,7 @@
                         description : docs[0]['description'],
                         print : 1
                     };
-                    content.load('./files/result.html', data);
+                    content.load('./files/bills/result.html', data);
                 });
             });
 
@@ -71,7 +71,7 @@
                         description : docs[0]['description'],
                         _id : docs[0]._id
                     };
-                    content.load('./files/newbill.html', data);
+                    content.load('./files/bills/newbill.html', data);
                 });
             });
 
@@ -79,7 +79,7 @@
             $(".delBtn").on('click', function () {
                 const printID = $(this).attr('id').split('-');
                 db.remove({ _id: printID[1] }, {}, function (err, numRemoved) {
-                    content.load('./files/lastbills.html');
+                    content.load('./files/bills/lastbills.html');
                 });
             })
         }

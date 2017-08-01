@@ -1,6 +1,5 @@
 
 
-<div id="uniqueID"></div>
 <div id="date"></div>
 <div id="dueDate"></div>
 <div id="quantity"></div>
@@ -17,7 +16,6 @@
 
 <script>
 
-    const ipc = require('electron').ipcRenderer;
 
 
         $('#uniqueID').html(data.uniqueID);
@@ -35,6 +33,8 @@
             const db = new Datastore({ filename: './data/savefile', autoload: true });
 
             if (data.print === 1) {
+                ipc = require('electron').ipcRenderer;
+
                 ipc.send('print-to-pdf')
 
             } else if (data.edited === 1) {

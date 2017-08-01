@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>formulaire</title>
-    <link rel="stylesheet" href="files/print.css">
+    <link rel="stylesheet" href="files/bills/print.css">
 	  <!-- Bootstrap CSS -->
 	  <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -35,15 +35,21 @@
 
           const content = $('#content');
 
+
           //new bill
 		  $('#newBillBtn').on('click', function () {
 		      data = null;
-			  content.load('./files/newbill.html', data);
+			  content.load('./files/bills/newbill.html', data);
           });
 
 		  //last bills
 		  $('#lastBillsBtn').on('click', function () {
-			  content.load('files/lastbills.html');
+			  content.load('files/bills/lastbills.html');
+          })
+
+          //models
+          $('#modelsBtn').on('click', function () {
+              content.load('files/models/modelslist.html');
           })
       });
 
