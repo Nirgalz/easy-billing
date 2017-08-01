@@ -1,0 +1,21 @@
+<button class="btn" id="newClientBtn">New Client</button>
+<button class="btn" id="listBtn">List</button>
+
+
+<div id="clientPage">
+
+
+
+</div>
+
+
+<script>
+    $('#clientPage').load('./files/clients/clientslist.html')
+
+    $('#newClientBtn').on('click', function () {
+        $('#clientPage').load('./files/clients/newclient.html')
+    })
+    $('#listBtn').on('click', function () {
+        $('#clientPage').load('./files/clients/clientslist.html')
+    })
+</script>
