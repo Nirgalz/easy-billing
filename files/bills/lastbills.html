@@ -24,8 +24,6 @@
         const db = new Datastore({ filename: './data/savefile', autoload: true });
 
         db.find({}, function (err, docs) {
-            console.log(docs);
-
             Object.keys(docs).forEach(function(key) {
                 $('#bills').append(`<tr><td>${docs[key]["uniqueID"]}</td><td>${docs[key]["price"]}</td><td><button title="print" class="btn printBtn glyphicon glyphicon-print" id="bill-${docs[key]["_id"]}"></button><button title="edit" class="btn editBtn glyphicon glyphicon-edit" id="bill-${docs[key]["_id"]}"></button><button title="Delete" class="btn delBtn glyphicon glyphicon-remove-circle" id="bill-${docs[key]["_id"]}"></button></td></tr>`)
             });
@@ -38,23 +36,8 @@
 
             //print
             $(".printBtn").on('click', function () {
-                const printID = $(this).attr('id').split('-');
-
-                db.find({ _id: printID[1] }, function (err, docs) {
-
-                    data = {
-                        uniqueID : docs[0]['uniqueID'],
-                        date : docs[0]['date'],
-                        dueDate : docs[0]['dueDate'],
-                        quantity : docs[0]['quantity'],
-                        rate : docs[0]['rate'],
-                        vat : docs[0]['vat'],
-                        description : docs[0]['description'],
-                        clientID: docs[0]['clientID'],
-                        print : 1
-                    };
-                    content.load('./files/bills/result.html', data);
-                });
+                printID = $(this).attr('id').split('-');
+                    content.load('./files/bills/result.html', printID[1]);
             });
 
             //edit bill
