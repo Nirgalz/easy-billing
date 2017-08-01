@@ -1,5 +1,5 @@
 
-//user data
+<br>user data<br>
 <div id="name"></div>
 <span id="mail"></span>
 <span id="website"></span>
@@ -15,7 +15,7 @@
 
 
 
-//bill data
+<br>bill data<br>
 <span id="date"></span>
 <span id="dueDate"></span>
 <span id="quantity"></span>
@@ -24,7 +24,7 @@
 <span id="description"></span>
 
 
-//client data
+<br>client data<br>
 <span id="clientName"></span>
 <span id="officialName"></span>
 <span id="represented"></span>
@@ -39,12 +39,13 @@
 
 
 <script>
+    console.log(data);
+
 
     const Datastore = require('nedb')
 
     const dbUser = new Datastore({ filename: './data/userdata', autoload: true });
     dbUser.find({}, function (err, docs) {
-        console.log(docs);
         for (var key in docs[0]) {
             if (docs[0].hasOwnProperty(key)) {
                 $("#" + key +"").html(docs[0][key]);
@@ -52,6 +53,17 @@
         }
 
     });
+
+    const dbClient = new Datastore({ filename: './data/userdata', autoload: true });
+    dbClient.find({_id : data.clientID}, function (err, docs) {
+        for (var key in docs[0]) {
+            if (docs[0].hasOwnProperty(key)) {
+                $("#" + key +"").html(docs[0][key]);
+            }
+        }
+
+    });
+
 
 
         $('#uniqueID').html(data.uniqueID);
