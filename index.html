@@ -35,7 +35,12 @@
       const populateFields = function (doc) {
           for (var key in doc) {
               if (doc.hasOwnProperty(key)) {
-                  $("#" + key ).html(doc[key]);
+                  if (key !== '') {
+                      $("#" + key ).html(doc[key]);
+                      $("." + key ).html(doc[key]);
+
+
+                  }
               }
           }
       };
@@ -54,6 +59,8 @@
               dbUser.find({}, function (err, user) {
                   populateFields(user[0])
               });
+              var bi =   bill[0]['rate'] * bill[0]['quantity'];
+              bill[0]["total"] = bi.toString();
               populateFields(bill[0])
           });
 
@@ -93,11 +100,7 @@
 
 
   <script>
-    // You can also require other files to run in this process
     require('./renderer.js')
-//    require('./files/result.html')
-//    require('./files/newbill.html')
-//    require('./files/lastbills.html')
 
   </script>
 </html>

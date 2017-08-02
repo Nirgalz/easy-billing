@@ -11,7 +11,7 @@
 
             <div class="bg-info"  style="float: left; margin-left:2mm; width: 96mm;height:72mm;">
 
-                <img src="./files/from.png" type="image/png" style="width:96mm; height:22mm;" >
+                <img src="./from.png" type="image/png" style="width:96mm; height:22mm;" >
                 <h4><strong><span id="name"></span></strong></h4>
                 <p style="font-size:12px;"><span id="mail"></span><br />
                     <span id="website"></span>
@@ -21,7 +21,7 @@
                     Tel. :<strong><span id="tel"></span></strong><br />
                     Siren: 	<strong><span id="siren"></span></strong><br />
                     Siret: 	<strong><span id="siret"></span></strong><br />
-                    VAT : 	<strong><span id="vat"></span></strong>
+                    VAT : 	<strong><span class="vatNumber"></span></strong>
                 </p>
             </div>
         </div>
@@ -30,9 +30,9 @@
 
             <div class="bg-info" style="float: left; margin-left:2mm; width: 96mm; height:72mm;">
 
-                <img src="./files/to.png" type="image/png" style="width:96mm; height:22mm;" >
+                <img src="./to.png" type="image/png" style="width:96mm; height:22mm;" >
                 <h4><strong><span id="clientName"></span></strong></h4>
-                <h5><strong><span id="officialName"></span></strong></h5>
+                <h5><strong><span class="officialName"></span></strong></h5>
                 <h5>represented by <strong><span id="represented"></span></strong></h5>
                 <br />
                 <p style="font-size:10px;">with a place of business at:<br />
@@ -52,8 +52,8 @@
 
         <div>
             <p style="font-size:12px;">Date: 	<strong><span id="date"></span></strong><br />
-                Invoice Number: 	<strong>F{{ invoice.year }}/<span id="uniqueID"></span></strong><br />
-                To: 	<strong><span id="officialName"></span></strong></p>
+                Invoice Number: 	<strong>F<span id="year"></span>/<span id="uniqueID"></span></strong><br />
+                To: 	<strong><span class="officialName"></span></strong></p>
         </div>
 
         <br/>
@@ -82,7 +82,7 @@
                 <div class="bg-info" >
                     <div class="row">
                         <div class="col-sm-6">
-                            <h5 class="bg-info" style=" margin-left: 5mm; margin-right: 5mm"><strong><span id="description"></span></strong></h5>
+                            <h5 class="bg-info" style=" margin-left: 5mm; margin-right: 5mm"><strong><span class="description"></span></strong></h5>
                         </div>
                         <div class="col-sm-2">
                             <h5 class="bg-info" ><strong><p class="text-right" style="  margin-right: 2mm"><span id="quantity"></span></p></strong></h5>
@@ -91,7 +91,7 @@
                             <h5 class="bg-info"><strong><p class="text-right" style="  margin-right: 2mm"><span id="rate"></span></p></strong></h5>
                         </div>
                         <div class="col-sm-2">
-                            <h5 class="bg-info"><strong><p class="text-right" style="  margin-right: 2mm">{{ invoice.totalInDollars }}</p></strong></h5>
+                            <h5 class="bg-info"><strong><p class="text-right" style="  margin-right: 2mm"><span class="totalExclVAT"></span> </p></strong></h5>
                         </div>
                     </div>
                 </div>
@@ -101,7 +101,7 @@
 
                         <div class="col" >
                             <h5 class="bg-info" style=" margin-left: 15mm; margin-right: 5mm; width: 110mm;">
-                                <span id="description"></span>
+                                <span class="description"></span>
                             </h5>
                         </div>
                     </div>
@@ -115,7 +115,7 @@
                     <h5 class="text-right" style="  margin-right: 10px">Total Price Excl. VAT :</h5>
                 </div>
                 <div class="col-sm-2">
-                    <h5 class="bg-info"><p class="text-right" style="  margin-right: 10px">{{ invoice.totalInDollars }}</p></h5>
+                    <h5 class="bg-info"><p class="text-right" style="  margin-right: 10px"><span class="totalExclVAT"></span> </p></h5>
                 </div>
             </div>
 
@@ -124,10 +124,10 @@
                     <h5>VAT not due, pursuant to article 259B - CGI</h5>
                 </div>
                 <div class="col-sm-4">
-                    <h5 class="text-right" style="  margin-right: 2mm"><p class="text-right" style="  margin-right: 2mm">VAT at <span id="vat"></span> % :</p></h5>
+                    <h5 class="text-right" style="  margin-right: 2mm"><p class="text-right" style="  margin-right: 2mm">VAT at <span class="vat"></span> % :</p></h5>
                 </div>
                 <div class="col-sm-2">
-                    <h5 class="bg-info"><p class="text-right" style="  margin-right: 2mm">$ 0.00 </p></h5>
+                    <h5 class="bg-info"><p class="text-right" style="  margin-right: 2mm">$ <span id="VATamount"></span> </p></h5>
                 </div>
             </div>
 
@@ -140,7 +140,7 @@
                         <h4 class="bg-primary"><p class="text-right" style="  margin-right: 2mm">Total Incl. VAT :</p></h4>
                     </div>
                     <div class="col-sm-2">
-                        <h4 class="bg-primary"><p class="text-right" style="  margin-right: 2mm"><strong>{{ invoice.totalInDollars }}</strong></p></h4>
+                        <h4 class="bg-primary"><p class="text-right" style="  margin-right: 2mm"><strong><span class="totalInclVAT"></span></strong></p></h4>
                     </div>
                 </div>
             </div>

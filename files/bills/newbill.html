@@ -54,6 +54,26 @@
         const db = new Datastore({ filename: './data/savefile', autoload: true });
 
 
+
+        function round(value, exp) {
+            if (typeof exp === 'undefined' || +exp === 0)
+                return Math.round(value);
+
+            value = +value;
+            exp = +exp;
+
+            if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0))
+                return NaN;
+
+            // Shift
+            value = value.toString().split('e');
+            value = Math.round(+(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp)));
+
+            // Shift back
+            value = value.toString().split('e');
+            return +(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp));
+        }
+
         //populate clients list
         dbClients.find({}, function (err, docs) {
             Object.keys(docs).forEach(function(key) {
@@ -90,6 +110,13 @@
             $inputs.each(function() {
                 data[this.name] = $(this).val();
             });
+            data.totalExclVAT = round(Number(data.quantity * data.rate) , 2);
+            data.totalInclVAT = round(Number(((data.vat/100) * data.totalExclVAT) + data.totalExclVAT) , 2);
+            data.VATamount = round(Number(data.totalInclVAT - data.totalExclVAT) , 2) ;
+            dy = data.date.split('-');
+
+            data.year = dy[0];
+
 
             if (billID === null) {
                 db.insert(data, function (err, newDoc) {
