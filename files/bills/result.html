@@ -194,12 +194,14 @@
 
 
 
+<button class="btn btn-warning" id="cancel">cancel</button>
 
 <button class="btn btn-success" id="print-pdf">Print to pdf</button>
 
 
 
 <script>
+
 
     //if it's a printing of an old bill
     if (typeof printID !== 'undefined') {
@@ -214,6 +216,8 @@
                 ipc = require('electron').ipcRenderer;
 
                 ipc.send('print-to-pdf')
+
+
 
         })
 
