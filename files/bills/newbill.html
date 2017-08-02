@@ -47,14 +47,15 @@
 <script>
     $(function () {
 
+
+        const content = $('#content');
         const Datastore = require('nedb')
-
-
         const dbClients = new Datastore({ filename: './data/clients', autoload: true });
+        const db = new Datastore({ filename: './data/savefile', autoload: true });
 
+
+        //populate clients list
         dbClients.find({}, function (err, docs) {
-            console.log(docs);
-
             Object.keys(docs).forEach(function(key) {
                 $('#clientID').append(`<option value="${docs[key]["_id"]}">${docs[key]["clientName"]}</option>`)
             });
@@ -63,20 +64,17 @@
 
 
 
-        const content = $('#content');
-        edited = 0;
-        if (data !== null) {
-            $('#uniqueID').val(data.uniqueID);
-            $('#date').val(data.date);
-            $('#dueDate').val(data.dueDate);
-            $('#quantity').val(data.quantity);
-            $('#rate').val(data.rate);
-            $('#vat').val(data.vat);
-            $('#description').val(data.description);
-             edited = 1;
-             _id = data._id;
+        if (typeof billID !== 'undefined') {
+            db.find({_id : billID}, function (err, docs) {
+                for (var key in docs[0]) {
+                    if (docs[0].hasOwnProperty(key)) {
+                        $("#" + key +"").val(docs[0][key]);
+                    }
+                }
+            });
+        } else {
+            billID = null;
         }
-
 
         //new bill to model
         $('#model-pdf').on('click', function (event) {
@@ -89,12 +87,18 @@
             $inputs.each(function() {
                 data[this.name] = $(this).val();
             });
-            const db = new Datastore({ filename: './data/savefile', autoload: true });
-            db.insert(data, function (err, newDoc) {
-                printID = newDoc._id;
-                content.load('./files/bills/result.html', printID);
 
-            });
+            if (billID === null) {
+                db.insert(data, function (err, newDoc) {
+                    printID = newDoc._id;
+                    content.load('./files/bills/result.html', printID);
+
+                });
+            } else {
+                db.update({_id : billID},data, function (err, newDoc) {
+                    content.load('./files/bills/result.html', billID);
+                });
+            }
         })
     });
 

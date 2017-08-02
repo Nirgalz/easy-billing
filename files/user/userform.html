@@ -56,10 +56,12 @@
 
 <script>
 
-    const Datastore = require('nedb')
+    Datastore = require('nedb')
 
-    const db = new Datastore({ filename: './data/userdata', autoload: true });
+    db = new Datastore({ filename: './data/userdata', autoload: true });
 
+
+    //populates fields if user has already saved user data
     id = 0;
     db.find({}, function (err, docs) {
        id = docs[0]['_id'];
@@ -71,7 +73,7 @@
 
     });
 
-
+    //on save action
         $('#saveUser').on('click', function (event) {
             event.preventDefault();
 
@@ -83,19 +85,18 @@
                 values[this.name] = $(this).val();
             });
 
+            //if user hasn't yet entered values, saves
             if (id === 0) {
                 db.insert(values, function (err, newDoc) {
                     console.log(newDoc)
                 });
 
+                //else updates values
             } else {
                 db.update({ _id: id }, values, function (err, newDoc) {
                     console.log(newDoc)
                 });
             }
-
-
-
         })
 
 

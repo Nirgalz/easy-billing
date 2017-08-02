@@ -15,14 +15,13 @@
 <script>
     $(function () {
 
-
-
         const Datastore = require('nedb')
         const content = $('#content');
 
 
         const db = new Datastore({ filename: './data/savefile', autoload: true });
 
+        //get bills and populate table
         db.find({}, function (err, docs) {
             Object.keys(docs).forEach(function(key) {
                 $('#bills').append(`<tr><td>${docs[key]["uniqueID"]}</td><td>${docs[key]["price"]}</td><td><button title="print" class="btn printBtn glyphicon glyphicon-print btn-primary" id="bill-${docs[key]["_id"]}"></button>  <button title="edit" class="btn editBtn glyphicon glyphicon-edit btn-warning" id="bill-${docs[key]["_id"]}"></button>  <button title="Delete" class="btn delBtn glyphicon glyphicon-remove-circle btn-danger" id="bill-${docs[key]["_id"]}"></button></td></tr>`)
@@ -43,22 +42,9 @@
 
             //edit bill
             $(".editBtn").on('click', function () {
-                const printID = $(this).attr('id').split('-');
-
-                db.find({ _id: printID[1] }, function (err, docs) {
-
-                    data = {
-                        uniqueID : docs[0]['uniqueID'],
-                        date : docs[0]['date'],
-                        dueDate : docs[0]['dueDate'],
-                        quantity : docs[0]['quantity'],
-                        rate : docs[0]['rate'],
-                        vat : docs[0]['vat'],
-                        description : docs[0]['description'],
-                        _id : docs[0]._id
-                    };
-                    content.load('./files/bills/newbill.html', data);
-                });
+                bi = $(this).attr('id').split('-');
+                billID =bi[1];
+                content.load('./files/bills/newbill.html', billID);
             });
 
             //delete bill

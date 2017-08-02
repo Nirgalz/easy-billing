@@ -33,7 +33,7 @@
 
      db = new Datastore({ filename: './data/clients', autoload: true });
 
-    if (typeof idClient !== 'undefined') {
+    if (idClient !== 0) {
         db.find({_id : idClient}, function (err, docs) {
             id = docs[0]['_id'];
             for (var key in docs[0]) {
@@ -58,13 +58,12 @@
             values[this.name] = $(this).val();
         });
 
-        if (typeof idClient === 'undefined') {
-            db.insert(values, function (err, newDoc) {
+        if (idClient !== 0) {
+            db.update({ _id: id }, values, function (err, newDoc) {
                 $('#clientPage').load('./files/clients/clientslist.html')
             });
-
         } else {
-            db.update({ _id: id }, values, function (err, newDoc) {
+            db.insert(values, function (err, newDoc) {
                 $('#clientPage').load('./files/clients/clientslist.html')
             });
         }

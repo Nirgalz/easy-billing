@@ -23,8 +23,6 @@
         const db = new Datastore({ filename: './data/clients', autoload: true });
 
         db.find({}, function (err, docs) {
-            console.log(docs);
-
             Object.keys(docs).forEach(function(key) {
                 $('#clients').append(`<tr><td>${docs[key]["clientName"]}</td><td>${docs[key]["represented"]}</td><td><button title="edit" class="btn editBtn glyphicon glyphicon-edit btn-warning" id="client-${docs[key]["_id"]}"></button>  <button title="Delete" class="btn delBtn glyphicon glyphicon-remove-circle btn-danger" id="client-${docs[key]["_id"]}"></button></td></tr>`)
             });

@@ -10,11 +10,12 @@
 
 
 <script>
-    $('#clientPage').load('./files/clients/clientslist.html')
+    $('#clientPage').load('./files/clients/clientslist.html');
 
     $('#newClientBtn').on('click', function () {
-        $('#clientPage').load('./files/clients/newclient.html')
-    })
+        idClient = 0;
+        $('#clientPage').load('./files/clients/newclient.html', idClient)
+    });
     $('#listBtn').on('click', function () {
         $('#clientPage').load('./files/clients/clientslist.html')
     })

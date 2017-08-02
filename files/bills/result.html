@@ -200,33 +200,6 @@
 
 
 <script>
-    //function to populate fields from a db object
-    const populateFields = function (doc) {
-        for (var key in doc) {
-            if (doc.hasOwnProperty(key)) {
-                $("#" + key +"").html(doc[key]);
-            }
-        }
-    };
-
-    // will get data from the three databases from the id of the bill
-    const dbGetBill = function (id) {
-        const Datastore = require('nedb');
-        const dbUser = new Datastore({ filename: './data/userdata', autoload: true });
-        const dbClients = new Datastore({ filename: './data/clients', autoload: true });
-        const dbBills = new Datastore({ filename: './data/savefile', autoload: true });
-
-        dbBills.find({_id : id}, function (err, bill) {
-            dbClients.find({ _id : bill[0]['clientID']}, function (err, client) {
-                populateFields(client[0])
-            });
-            dbUser.find({}, function (err, user) {
-                populateFields(user[0])
-            });
-            populateFields(bill[0])
-        });
-
-    };
 
     //if it's a printing of an old bill
     if (typeof printID !== 'undefined') {
