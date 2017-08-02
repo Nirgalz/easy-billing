@@ -68,7 +68,10 @@
             db.find({_id : billID}, function (err, docs) {
                 for (var key in docs[0]) {
                     if (docs[0].hasOwnProperty(key)) {
-                        $("#" + key +"").val(docs[0][key]);
+                        $("#" + key ).val(docs[0][key]);
+                        if ($("#" + key ).is('select')) {
+                            $("#" + key + " option[value = " +docs[0][key]+ "]").attr('selected','selected');
+                        }
                     }
                 }
             });

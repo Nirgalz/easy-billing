@@ -35,7 +35,7 @@
       const populateFields = function (doc) {
           for (var key in doc) {
               if (doc.hasOwnProperty(key)) {
-                  $("#" + key +"").html(doc[key]);
+                  $("#" + key ).html(doc[key]);
               }
           }
       };

@@ -18,5 +18,4 @@ Features :
 - print to pdf
 
 todo :
-- selected options for client, proper date on edited bills 
 - list of bills by client ?
