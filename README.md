@@ -1,15 +1,16 @@
 
-Easy billing app for freelancers.
+Easy billing desktop app for freelancers.
 
 Simply keep track of your bills and clients, print them in pdf.
 
 May not be relevant for all countries, made for a french designer.
 
 
-Built with : 
+Libraries used : 
 - electron : https://electron.atom.io/
-- jquery
 - nedb : https://github.com/louischatriot/nedb
+- jquery
+- bootstrap
 
 Features :
 - editable personal data
@@ -19,3 +20,13 @@ Features :
 
 todo :
 - list of bills by client ?
+
+Requires :
+- node.js
+
+Installation and usage :
+
+```
+npm install                 # installs dependencies
+npm start                   # launches the program
+```
