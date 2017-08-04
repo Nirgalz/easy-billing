@@ -112,6 +112,7 @@
             $inputs.each(function() {
                 data[this.name] = $(this).val();
             });
+            data.uniqueID = Number(data.uniqueID);
             data.totalExclVAT = round(Number(data.quantity * data.rate) , 2);
             data.totalInclVAT = round(Number(((data.vat/100) * data.totalExclVAT) + data.totalExclVAT) , 2);
             data.VATamount = round(Number(data.totalInclVAT - data.totalExclVAT) , 2) ;
