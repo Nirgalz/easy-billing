@@ -5,8 +5,9 @@
             <input class="form-control" type="number" id="uniqueID" name="uniqueID">
             <label for="clientID" style="width:100px; margin:20px">Client</label>
             <select class="form-control" id="clientID" name="clientID">
-
             </select>
+            <label for="contractType" style="width:100px; margin:20px">contractType</label>
+            <input class="form-control" id="contractType" name="contractType">
 
         </div>
 
@@ -36,7 +37,9 @@
         <br/>
         <div class="form-group row">
             <label for="description" style="width:120px">description</label>
-            <textarea class="form-control" rows="20" id="description" name="description"></textarea>
+            <input class="form-control"  id="description" name="description">
+            <label for="details" style="width:120px">details</label>
+            <textarea class="form-control" rows="10" id="details" name="details"></textarea>
         </div>
 
         <button class="btn btn-success" id="model-pdf">Show the model</button>
@@ -48,7 +51,6 @@
     $(function () {
 
 
-        const content = $('#content');
         const Datastore = require('nedb')
         const dbClients = new Datastore({ filename: './data/clients', autoload: true });
         const db = new Datastore({ filename: './data/savefile', autoload: true });
@@ -121,13 +123,17 @@
             if (billID === null) {
                 db.insert(data, function (err, newDoc) {
                     printID = newDoc._id;
-                    content.load('./files/bills/result.html', printID);
+                    $(document.body).load('./files/bills/result.html', printID);
 
                 });
             } else {
-                db.update({_id : billID},data, function (err, newDoc) {
-                    content.load('./files/bills/result.html', billID);
+
+                db.update({_id : billID},data, function () {
+                    printID = billID;
+                    $(document.body).load('./files/bills/result.html', printID);
+
                 });
+
             }
         })
     });

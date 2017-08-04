@@ -1,6 +1,6 @@
 
 <link rel="stylesheet"
-      href="print.css">
+      href="./files/bills/print.css">
 
 
 <div id="mainContainer" class="container" style="margin:auto; width: 200mm; height: 280mm;">
@@ -11,7 +11,7 @@
 
             <div class="bg-info"  style="float: left; margin-left:2mm; width: 96mm;height:72mm;">
 
-                <img src="./from.png" type="image/png" style="width:96mm; height:22mm;" >
+                <img src="./files/logos/from.png" type="image/png" style="width:96mm; height:22mm;" >
                 <h4><strong><span id="name"></span></strong></h4>
                 <p style="font-size:12px;"><span id="mail"></span><br />
                     <span id="website"></span>
@@ -30,7 +30,7 @@
 
             <div class="bg-info" style="float: left; margin-left:2mm; width: 96mm; height:72mm;">
 
-                <img src="./to.png" type="image/png" style="width:96mm; height:22mm;" >
+                <img src="./files/logos/to.png" type="image/png" style="width:96mm; height:22mm;" >
                 <h4><strong><span id="clientName"></span></strong></h4>
                 <h5><strong><span class="officialName"></span></strong></h5>
                 <h5>represented by <strong><span id="represented"></span></strong></h5>
@@ -46,7 +46,7 @@
     <div class="row">
 
         <div>
-            <h4> Fees: contract VFX artist</h4>
+            <h4> Fees: <span id="contractType"></span></h4>
         </div>
 
 
@@ -82,7 +82,7 @@
                 <div class="bg-info" >
                     <div class="row">
                         <div class="col-sm-6">
-                            <h5 class="bg-info" style=" margin-left: 5mm; margin-right: 5mm"><strong><span class="description"></span></strong></h5>
+                            <h5 class="bg-info" style=" margin-left: 5mm; margin-right: 5mm"><strong><span id="description"></span></strong></h5>
                         </div>
                         <div class="col-sm-2">
                             <h5 class="bg-info" ><strong><p class="text-right" style="  margin-right: 2mm"><span id="quantity"></span></p></strong></h5>
@@ -101,7 +101,7 @@
 
                         <div class="col" >
                             <h5 class="bg-info" style=" margin-left: 15mm; margin-right: 5mm; width: 110mm;">
-                                <span class="description"></span>
+                                <span id="details"></span>
                             </h5>
                         </div>
                     </div>
@@ -202,6 +202,9 @@
 <script>
 
     $(function () {
+
+        console.log(printID);
+
         //if it's a printing of an old bill
         if (typeof printID !== 'undefined') {
             dbGetBill(printID);
