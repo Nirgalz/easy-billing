@@ -76,7 +76,7 @@
             return +(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp));
         }
 
-        //populate clients list
+        //populate clients list when new bill
         dbClients.find({}, function (err, docs) {
             Object.keys(docs).forEach(function(key) {
                 $('#clientID').append(`<option value="${docs[key]["_id"]}">${docs[key]["clientName"]}</option>`)
@@ -85,6 +85,7 @@
         });
 
 
+        //populate clients list when edited bill
 
         if (typeof billID !== 'undefined') {
             db.find({_id : billID}, function (err, docs) {
@@ -99,6 +100,14 @@
             });
         } else {
             billID = null;
+        }
+
+
+        //generates uniqueID when new bill (number of bills + 1)
+        if (billID === null) {
+          db.count({}, function (err, count) {
+            $('#uniqueID').val(count + 1);
+          });
         }
 
         //new bill to model

@@ -35,4 +35,3 @@ npm start                   # launches the program
 
 todo :
 - list of bills by client ?
-- choice of currency at bill creation
