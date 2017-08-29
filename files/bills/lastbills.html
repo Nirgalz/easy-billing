@@ -4,6 +4,7 @@
         <th>uniqueID</th>
         <th>client</th>
         <th>date</th>
+        <th>totalInclVAT</th>
         <th>actions</th>
     </tr>
     </thead>
@@ -27,7 +28,7 @@
         db.find({}).sort({ uniqueID: 1 }).exec(function (err, docs) {
             Object.keys(docs).forEach(function(key) {
 
-                $('#bills').append(`<tr><td>${docs[key]["uniqueID"]}</td><td><span class="client-${docs[key]["clientID"]}"></span></td><td>${docs[key]["date"]}</td><td><button title="print" class="btn printBtn glyphicon glyphicon-print btn-primary" id="bill-${docs[key]["_id"]}"></button>  <button title="edit" class="btn editBtn glyphicon glyphicon-edit btn-warning" id="bill-${docs[key]["_id"]}"></button>  <button title="Delete" class="btn delBtn glyphicon glyphicon-remove-circle btn-danger" id="bill-${docs[key]["_id"]}"></button></td></tr>`)
+                $('#bills').append(`<tr><td>${docs[key]["uniqueID"]}</td><td><span class="client-${docs[key]["clientID"]}"></span></td><td>${docs[key]["date"]}</td><td>${docs[key]["totalInclVAT"]}</td><td><button title="print" class="btn printBtn glyphicon glyphicon-print btn-primary" id="bill-${docs[key]["_id"]}"></button>  <button title="edit" class="btn editBtn glyphicon glyphicon-edit btn-warning" id="bill-${docs[key]["_id"]}"></button>  <button title="Delete" class="btn delBtn glyphicon glyphicon-remove-circle btn-danger" id="bill-${docs[key]["_id"]}"></button></td></tr>`)
 
                 dbClient.find({_id : docs[key]["clientID"]}, function (err, client) {
                     $('.client-' + client[0]["_id"] + '').text(client[0]["clientName"]);
