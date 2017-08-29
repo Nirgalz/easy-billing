@@ -10,7 +10,7 @@ To add or remove fields, you just do it in files/bills/newbill.html form and fil
 May not be relevant for all countries, made for a french designer.
 
 
-Libraries used : 
+Libraries used :
 - electron : https://electron.atom.io/
 - nedb : https://github.com/louischatriot/nedb
 - jquery
@@ -22,9 +22,6 @@ Features :
 - bills' data is stored and can be edited
 - print to pdf
 
-todo :
-- list of bills by client ?
-
 Requires :
 - node.js
 
@@ -34,3 +31,8 @@ Installation and usage :
 npm install                 # installs dependencies
 npm start                   # launches the program
 ```
+
+
+todo :
+- list of bills by client ?
+- choice of currency at bill creation

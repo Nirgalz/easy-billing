@@ -1,7 +1,7 @@
 {
   "name": "easy-billing",
-  "version": "0.1.0",
-  "description": "A minimal billing desktop application",
+  "version": "1.0.0",
+  "description": "A minimalist billing desktop application",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
@@ -9,15 +9,16 @@
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
     "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
+    "billing",
+    "freelancers",
+    "desktop",
+    "app"
   ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
+  "author": "Nirgalz",
+  "license": "MIT",
   "devDependencies": {
-    "electron": "~1.6.2"
+    "electron": "~1.6.2",
+    "electron-windows-installer": "^1.4.4"
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
