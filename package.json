@@ -17,7 +17,7 @@
   "author": "Nirgalz",
   "license": "MIT",
   "devDependencies": {
-    "electron": "~1.6.2",
+    "electron": "~9.1.0",
     "electron-json-storage": "^4.1.8",
     "electron-windows-installer": "^1.4.4"
   },
